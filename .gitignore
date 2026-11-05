@@ -1,0 +1,8 @@
+# Scratch (yours and DeckWerk's)
+drafts/
+edit/
+.versions/
+history.jsonl
+# Live 3D pages (~5 MB each): rebuilt from their model, not committed
+assets/web/*_3d.*
+__pycache__/

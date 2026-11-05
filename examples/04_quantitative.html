@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head>
+<base href="../">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body style="margin:0;overflow:hidden"><section class="slide" style="width:1920px;height:1080px;position:relative;overflow:hidden">
+<div class="s-title">Method B halves the time at the same quality</div>
+<div class="s-setup">Placeholder numbers. 10 scenes, each the mean of 3 runs, one A100.</div>
+<div class="s-col" style="left:96px;top:300px;width:760px;height:36px;text-align:left">time per scene, in seconds (lower is better)</div>
+<div class="s-row" style="left:96px;top:400px;width:180px;height:60px">method A</div>
+<div class="s-bar" style="left:296px;top:400px;width:480px;background:var(--c1)">120</div>
+<div class="s-row" style="left:96px;top:510px;width:180px;height:60px">method B</div>
+<div class="s-bar" style="left:296px;top:510px;width:232px;background:var(--c3)">58</div>
+<div class="s-row" style="left:96px;top:620px;width:180px;height:60px">method C</div>
+<div class="s-bar" style="left:296px;top:620px;width:380px;background:var(--c2)">95</div>
+<table class="s-table" style="left:960px;top:300px;width:864px">
+<tr><th>method</th><th>PSNR, dB ↑</th><th>LPIPS ↓</th><th>time, s ↓</th></tr>
+<tr><td>method A</td><td>24.1 ± 0.3</td><td>0.121 ± 0.004</td><td>120</td></tr>
+<tr><td>method B</td><td class="s-best">24.3 ± 0.2</td><td class="s-best">0.118 ± 0.003</td><td class="s-best">58</td></tr>
+<tr><td>method C</td><td>22.9 ± 0.4</td><td>0.140 ± 0.005</td><td>95</td></tr>
+</table>
+<div class="s-note" style="left:960px;top:560px;width:864px;height:120px">PSNR: pixel agreement with held-out photos (higher is better). LPIPS: perceptual distance to them (lower is better). ± is the spread over the 3 runs; the best value per column in green.</div>
+<div class="s-takeaway">Method B is as good as method A in half the time: it becomes the default.</div>
+</section>
+</body></html>

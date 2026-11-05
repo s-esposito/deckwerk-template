@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head>
+<base href="../">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body style="margin:0;overflow:hidden"><section class="slide" style="width:1920px;height:1080px;position:relative;overflow:hidden">
+<div class="s-title">Method B matches the photo; method A drifts</div>
+<div class="s-setup">Placeholder images. Two objects, one photo each; each method rendered from the photo&#39;s camera, its error map beside it.</div>
+<div class="s-col" style="left:400px;top:270px;width:255px;height:36px">photo</div>
+<div class="s-col" style="left:685px;top:270px;width:255px;height:36px">method A</div>
+<div class="s-col" style="left:970px;top:270px;width:255px;height:36px">its error</div>
+<div class="s-col" style="left:1255px;top:270px;width:255px;height:36px">method B</div>
+<div class="s-col" style="left:1540px;top:270px;width:255px;height:36px">its error</div>
+<div class="s-row" style="left:96px;top:312px;width:280px;height:215px">object 1<br>orange ball</div>
+<img class="s-img" src="assets/placeholder_round_photo.png" alt="" style="left:420px;top:312px;width:215px;height:215px">
+<img class="s-img" src="assets/placeholder_round_method_a.png" alt="" style="left:705px;top:312px;width:215px;height:215px">
+<img class="s-img" src="assets/placeholder_round_method_a_err.png" alt="" style="left:990px;top:312px;width:215px;height:215px">
+<img class="s-img" src="assets/placeholder_round_method_b.png" alt="" style="left:1275px;top:312px;width:215px;height:215px">
+<img class="s-img" src="assets/placeholder_round_method_b_err.png" alt="" style="left:1560px;top:312px;width:215px;height:215px">
+<div class="s-note" style="left:685px;top:530px;width:255px;height:30px;text-align:center">PSNR 16.4 dB</div>
+<div class="s-note" style="left:1255px;top:530px;width:255px;height:30px;text-align:center">PSNR 27.8 dB</div>
+<div class="s-row" style="left:96px;top:574px;width:280px;height:215px">object 2<br>blue box</div>
+<img class="s-img" src="assets/placeholder_box_photo.png" alt="" style="left:420px;top:574px;width:215px;height:215px">
+<img class="s-img" src="assets/placeholder_box_method_a.png" alt="" style="left:705px;top:574px;width:215px;height:215px">
+<img class="s-img" src="assets/placeholder_box_method_a_err.png" alt="" style="left:990px;top:574px;width:215px;height:215px">
+<img class="s-img" src="assets/placeholder_box_method_b.png" alt="" style="left:1275px;top:574px;width:215px;height:215px">
+<img class="s-img" src="assets/placeholder_box_method_b_err.png" alt="" style="left:1560px;top:574px;width:215px;height:215px">
+<div class="s-note" style="left:685px;top:792px;width:255px;height:30px;text-align:center">PSNR 15.9 dB</div>
+<div class="s-note" style="left:1255px;top:792px;width:255px;height:30px;text-align:center">PSNR 26.5 dB</div>
+<div class="s-legend" style="left:300px;top:836px;width:300px;height:36px;text-align:right">error per pixel: none</div>
+<img class="s-img" src="assets/placeholder_error_bar.png" alt="" style="left:612px;top:844px;width:200px;height:20px;object-fit:fill">
+<div class="s-legend" style="left:824px;top:836px;width:120px;height:36px;text-align:left">large</div>
+<div class="s-note" style="left:980px;top:840px;width:840px;height:30px">PSNR: agreement with the photo on the object&#39;s pixels, higher is better</div>
+<div class="s-takeaway">Method B&#39;s error stays on the outline; method A is shifted and too small.</div>
+</section>
+</body></html>

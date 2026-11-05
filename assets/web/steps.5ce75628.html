@@ -1,0 +1,97 @@
+<!doctype html>
+<!--
+  Source of the web-animation example (slide 6). A web element is any self-contained HTML page;
+  DeckWerk injects `window.deckwerk`, whose onActive/onStep tell the page which build step the
+  slide is at (the slide's `data-build="click"` markers are the steps: 2 markers = steps 0-2).
+  Stage it with `slide-agent web add . examples/web/steps.html --size 1728x600 --title ...`, or
+  after editing, `slide-agent web replace . <slide> examples/web/steps.html`.
+-->
+<html><head>
+<script data-deckwerk-bridge>(function(){
+if(window.deckwerk)return;
+var SRC="deckwerk";
+var KEYS=["ArrowRight","ArrowLeft","ArrowDown","ArrowUp","PageDown","PageUp"," ","Enter","Backspace","Home","Escape","b","B","o","O"];
+var handlers={active:[],inactive:[],step:[]};
+function post(m){m.source=SRC;if(window.parent&&window.parent!==window)window.parent.postMessage(m,'*');}
+window.deckwerk={
+  onActive:function(f){handlers.active.push(f);},
+  onInactive:function(f){handlers.inactive.push(f);},
+  onStep:function(f){handlers.step.push(f);},
+  next:function(){post({action:'next'});},
+  prev:function(){post({action:'prev'});},
+  ready:function(p){
+    if(!p||typeof p.then!=='function'){post({action:'ready'});return;}
+    post({action:'hold-ready'});
+    var done=function(){post({action:'ready'});};
+    p.then(done,done);
+  }
+};
+window.addEventListener('message',function(e){
+  var d=e.data;if(!d||d.source!==SRC||!d.event)return;
+  (handlers[d.event]||[]).forEach(function(f){try{f({step:d.step,steps:d.steps});}catch(err){console.error(err);}});
+});
+window.addEventListener('keydown',function(e){
+  if(e.defaultPrevented||KEYS.indexOf(e.key)<0)return;
+  var t=e.target;if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+  e.preventDefault();post({action:'key',key:e.key});
+});
+})();</script><meta charset="utf-8">
+<style>
+  /* The theme's colours (a web element cannot read theme.css): keep in sync with it. */
+  :root { --ink: #1f3a4d; --text: #1b2a34; --muted: #8aa1ae; --best: #1baf7a;
+          --sans: 'Calibri', 'Carlito', sans-serif; }
+  html, body { margin: 0; height: 100%; background: #ffffff; overflow: hidden; }
+  svg { display: block; font-family: var(--sans); }
+  .box  { fill: #ffffff; stroke: var(--muted); stroke-width: 3; }
+  .on .box { stroke: var(--best); stroke-width: 6; }
+  .name { font-size: 40px; font-weight: 700; fill: var(--ink); text-anchor: middle; }
+  .what { font-size: 26px; fill: var(--text); text-anchor: middle; }
+  .arrow { stroke: var(--ink); stroke-width: 5; fill: none; marker-end: url(#head); }
+  .part { opacity: 0; transition: opacity 0.5s ease; }
+  .part.shown { opacity: 1; }
+  .instant .part { transition: none; }
+</style></head>
+<body>
+<svg id="svg" width="1728" height="600" viewBox="0 0 1728 600">
+  <defs><marker id="head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker></defs>
+  <g class="part" data-step="0">
+    <rect class="box" x="40" y="170" width="440" height="260" rx="24"/>
+    <text class="name" x="260" y="285">input</text>
+    <text class="what" x="260" y="335">shown on arrival</text>
+  </g>
+  <g class="part" data-step="1">
+    <path class="arrow" d="M500,300 L620,300"/>
+    <rect class="box" x="644" y="170" width="440" height="260" rx="24"/>
+    <text class="name" x="864" y="285">method</text>
+    <text class="what" x="864" y="335">first click</text>
+  </g>
+  <g class="part" data-step="2">
+    <path class="arrow" d="M1104,300 L1224,300"/>
+    <rect class="box" x="1248" y="170" width="440" height="260" rx="24"/>
+    <text class="name" x="1468" y="285">result</text>
+    <text class="what" x="1468" y="335">second click</text>
+  </g>
+</svg>
+<script>
+  const parts = [...document.querySelectorAll('.part')];
+  const svg = document.getElementById('svg');
+  // Show everything up to `step`, highlight the newest part. `instant` skips the fade: used when
+  // the slide comes on screen (possibly at its last step, presenting backwards) and for PDF
+  // export, which captures each step after onActive.
+  function show(step, instant) {
+    svg.classList.toggle('instant', instant);
+    parts.forEach(p => {
+      const s = +p.dataset.step;
+      p.classList.toggle('shown', s <= step);
+      p.classList.toggle('on', s === step);
+    });
+  }
+  if (window.deckwerk) {
+    deckwerk.onActive(({ step }) => show(step || 0, true));
+    deckwerk.onStep(({ step }) => show(step, false));
+  } else {
+    show(parts.length - 1, true);   // opened in a plain browser: the settled final state
+  }
+</script>
+</body></html>
