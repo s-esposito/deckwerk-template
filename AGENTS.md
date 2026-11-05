@@ -19,7 +19,7 @@ written afterwards, never those already in a deck.
 
 ## Start a new deck
 
-    cp -r template <dd-mm-yyyy> && rm -rf <dd-mm-yyyy>/.git     # one folder per report
+    cp -r deckwerk-template <dd-mm-yyyy> && rm -rf <dd-mm-yyyy>/.git     # one folder per report
     cd <dd-mm-yyyy>
 
 Then rewrite the title, "Last week" and "Next" slides, add your content slides (below), and
@@ -36,7 +36,7 @@ delete the example content slides (and their `assets/placeholder_*`, `assets/web
 | `examples/web/steps.html` | Source page of the web animation |
 | `assets/` | Images and models the slides use, referred to as `assets/<name>`; `assets/web/` holds staged web pages |
 | `tools/number_slides.py` | Writes the page numbers |
-| `tools/build_examples.py` | Rebuilds this template's example deck (replaces every slide; template only) |
+| `tools/build_examples.py` | Rebuilds this template's example deck (replaces every slide; runs only in the template) |
 | `tools/build_deck_3d_viewer.py` | Packs a 3D model into one offline viewer page |
 | `drafts/`, `edit/`, `.versions/`, `history.jsonl` | Scratch (yours and DeckWerk's), not committed |
 

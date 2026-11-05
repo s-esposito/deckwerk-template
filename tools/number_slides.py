@@ -87,10 +87,9 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("deck", type=Path)
     args = ap.parse_args()
-    env = os.environ
     page = args.deck / "edit" / "page_numbers.html"
     page.parent.mkdir(exist_ok=True)
-    html = subprocess.run([str(SLIDE_AGENT), "inspect", str(args.deck), "--html", "--all"], env=env,
+    html = subprocess.run([str(SLIDE_AGENT), "inspect", str(args.deck), "--html", "--all"],
                           check=True, capture_output=True, text=True).stdout
     html, changed = renumber(html, theme_style(args.deck))
     if not changed:
@@ -98,7 +97,7 @@ def main():
         return
     page.write_text(html)
     out = subprocess.run([str(SLIDE_AGENT), "apply", str(args.deck), "--html", str(page),
-                          "--label", "page numbers"], env=env, check=True, capture_output=True, text=True)
+                          "--label", "page numbers"], check=True, capture_output=True, text=True)
     changes = json.loads(out.stdout[out.stdout.index("{"):]).get("changes", {})
     print(f"{changed} page number(s) set; deck changes:",
           {k: v for k, v in changes.items() if v not in ([], 0)})

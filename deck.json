@@ -1417,8 +1417,8 @@
             "overflow": "hidden"
           },
           "type": "web",
-          "src": "assets/web/steps.5ce75628.html",
-          "poster": "assets/web/steps.5ce75628.poster.png",
+          "src": "assets/web/steps.3fff863f.html",
+          "poster": "assets/web/steps.3fff863f.poster.png",
           "interactive": true,
           "title": "Three steps, one per click"
         },
@@ -1617,8 +1617,8 @@
         },
         {
           "id": "slide-58-div-3",
-          "x": 104,
-          "y": 268,
+          "x": 96,
+          "y": 270,
           "w": 1728,
           "h": 600,
           "rot": 0,

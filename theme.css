@@ -1,7 +1,7 @@
-/* ===== YOUR STYLE: edit this block, then run python tools/build_examples.py . (in template/) ========
+/* ===== YOUR STYLE: edit this block, then run `python tools/build_examples.py .` in the template =====
  * Every colour and font of the deck comes from here. `slide-agent apply` bakes the values into
  * each slide, so a change styles the slides written afterwards, not those already in a deck:
- * set your style once in your copy of template/, rebuild its examples, and copy decks from it.
+ * set your style once in your copy of the template, rebuild its examples, and copy decks from it.
  * The animation example (examples/web/steps.html) repeats the colours it uses in its own
  * :root block, since a web element cannot read this file.
  */
